@@ -30,23 +30,38 @@
 
 <script>
   let deferredPrompt;
-const installBtn = document.getElementById('install-btn');
+  const installBtn = document.getElementById('install-btn');
 
-window.addEventListener('beforeinstallprompt', (e) => {
-  e.preventDefault();
-  deferredPrompt = e;
-  installBtn.style.display = 'block';
-});
+  // Check if app is already installed
+  if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true) {
+    installBtn.style.display = 'none';
+  }
 
-installBtn.addEventListener('click', () => {
-  installBtn.style.display = 'none';
-  deferredPrompt.prompt();
-  deferredPrompt.userChoice.then(() => {
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    installBtn.style.display = 'block';
+  });
+
+  installBtn.addEventListener('click', async () => {
+    installBtn.style.display = 'none'; // hide after click
+    deferredPrompt.prompt();
+    const { outcome } = await deferredPrompt.userChoice;
+    if (outcome === 'accepted') {
+      console.log('User accepted the install prompt');
+    } else {
+      console.log('User dismissed the install prompt');
+    }
     deferredPrompt = null;
   });
-});
 
+  // Listen for install event
+  window.addEventListener('appinstalled', () => {
+    console.log('App installed');
+    installBtn.style.display = 'none'; // hide after installation
+  });
 </script>
+
 
     
 <script src="script.js"></script>
