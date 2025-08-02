@@ -20,10 +20,11 @@ body {
   max-width: 600px;
   width: 90%;
   background-color: #1e1a35;
-  padding: 2rem;
+  padding: 1rem;
   border-radius: 15px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
   text-align: center;
+  margin: center;
 }
 
 .btn, #next-btn {
