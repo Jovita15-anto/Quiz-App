@@ -10,7 +10,7 @@
     <link rel="icon" href="icons/icon-512.png" sizes="512x
 </head>
 <body>
-  <div class="containen">
+  <div class="container">
     <div class="app">
         <h1>QuizItUp</h1>
         <div class="quiz">
@@ -25,27 +25,27 @@
         </div>
     </div>
 
-    <button id="installBtn" style="display: none;">Install App</button>
+    <button id="install-btn">Install App</button>
   </div>
 
 <script>
   let deferredPrompt;
-  const installBtn = document.getElementById('installBtn');
+const installBtn = document.getElementById('install-btn');
 
-  window.addEventListener('beforeinstallprompt', (e) => {
-    e.preventDefault();
-    deferredPrompt = e;
-    installBtn.style.display = 'block';
-  });
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  installBtn.style.display = 'block';
+});
 
-  installBtn.addEventListener('click', async () => {
-    installBtn.style.display = 'none';
-    if (deferredPrompt) {
-      deferredPrompt.prompt();
-      await deferredPrompt.userChoice;
-      deferredPrompt = null;
-    }
+installBtn.addEventListener('click', () => {
+  installBtn.style.display = 'none';
+  deferredPrompt.prompt();
+  deferredPrompt.userChoice.then(() => {
+    deferredPrompt = null;
   });
+});
+
 </script>
 
     

@@ -98,3 +98,22 @@ body {
 .incorrect{
     background: #C43F3F;
 }
+#install-btn {
+  background: linear-gradient(135deg, #F0C38E, #FF8C8C);
+  color: #312C51;
+  font-weight: 600;
+  font-size: 1.1rem;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  margin: 30px auto 0;
+  display: block;
+  transition: transform 0.3s, background 0.3s;
+  box-shadow: 0 5px 15px rgba(133, 127, 120, 0.4);
+}
+
+#install-btn:hover {
+  background: linear-gradient(135deg, #FF8C8C, #F0C38E);
+  transform: scale(1.05);
+}
